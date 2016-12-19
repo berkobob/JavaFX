@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class JavaFX extends Application implements EventHandler<ActionEvent>{
+public class JavaFX extends Application {
 
 	Button button;
 	
@@ -21,7 +21,13 @@ public class JavaFX extends Application implements EventHandler<ActionEvent>{
 		primaryStage.setTitle("Title of the Window");
 		
 		button = new Button("Click me");
-		button.setOnAction(this);
+		button.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				System.out.println("Button pressed");
+			}
+		});
 		
 		StackPane layout = new StackPane();
 		layout.getChildren().add(button);
@@ -30,12 +36,4 @@ public class JavaFX extends Application implements EventHandler<ActionEvent>{
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
-
-	@Override
-	public void handle(ActionEvent arg0) {
-		System.out.println("Figured it out!!");
-		System.out.println(arg0.getSource());
-		System.out.println(arg0.getEventType());
-	}
-
 }
