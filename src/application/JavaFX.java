@@ -21,16 +21,17 @@ public class JavaFX extends Application {
 		primaryStage.setTitle("Title of the Window");
 		
 		button = new Button("Click me");
-		button.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent arg0) {
-				System.out.println("Button pressed");
-			}
+		button.setOnAction(e -> System.out.println("Button pressed"));
+		
+		Button button2 = new Button("Prints two lines");
+		button2.setOnAction(e -> {
+			System.out.println("Line 1");
+			System.out.println("Line 2");
 		});
 		
 		StackPane layout = new StackPane();
 		layout.getChildren().add(button);
+		layout.getChildren().add(button2);
 		
 		Scene scene = new Scene(layout, 300, 250);
 		primaryStage.setScene(scene);
