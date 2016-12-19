@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 public class JavaFX extends Application {
 
 	Stage window;
-	Scene scene1, scene2;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -22,26 +21,16 @@ public class JavaFX extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		window = primaryStage;
+		window.setTitle("New window coming soon");
 		
-		Label label1 = new Label("Welcome to switching between scenes");
-		Button button1 = new Button("Go to scene 2");
-		button1.setOnAction(e-> window.setScene(scene2));
+		Button button = new Button("Click me");
+		button.setOnAction(e-> AlertBox.display("My new window", "Welcome to my new window"));
 		
-		//Layout 1 - children are laid out in a vertical column
-		VBox layout1 = new VBox(20); // 20 means 20px between children
-		layout1.getChildren().addAll(label1, button1);
-		scene1 = new Scene(layout1, 200, 200);
+		StackPane layout = new StackPane(); 
+		layout.getChildren().add(button);
+		Scene scene = new Scene(layout, 200, 200);
 		
-		Button button2 = new Button("Go to scene 1");
-		button2.setOnAction(e-> window.setScene(scene1));
-		
-		//Layout 2
-		StackPane layout2 = new StackPane();
-		layout2.getChildren().add(button2);
-		scene2 = new Scene(layout2, 400,400);
-		
-		window.setScene(scene1);
-		window.setTitle("HEre is my title");
+		window.setScene(scene);
 		window.show();
 	}
 }
